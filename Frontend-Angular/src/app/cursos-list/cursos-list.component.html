@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Cursos</h2>
+    <button class="btn btn-primary" (click)="nuevoCurso()">Nuevo Curso</button>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <p></p>
+    <div class="d-flex">
+      <input class="form-control me-2" type="text" placeholder="Fecha Fin MM-dd-yyyy" [(ngModel)]="fechaFin" >
+      <button class="btn btn-primary" (click)="filtrarCurso()" >Filtrar</button>
+    </div>
+  </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tema</th>
+          <th>Alumnos</th>
+          <th>Docente</th>
+          <th>Fecha de Inicio</th>
+          <th>Fecha de Fin</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos  | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <td class="align-middle">{{ curso.id }}</td>
+          <td class="align-middle">{{ curso.tema.nombre }}</td>
+          <td class="align-middle">
+            <div class="row">
+              <div class="col-sm" >
+                <span *ngFor="let alumno of curso.alumnos; let last = last">
+                  {{ alumno.nombre }}<span *ngIf="!last"> &#9617; </span>
+                </span>
+              </div>
+            </div>
+           
+            
+          </td>
+          <td class="align-middle">{{ curso.docente.nombre }}</td>
+          <td class="align-middle">{{ curso.fechaInicio | date:'shortDate'  }}</td>
+          <td class="align-middle">{{ curso.fechaFin | date:'shortDate' }}</td>
+          <td class="align-middle">{{ curso.precio | currency:'ARS' }}</td>
+          <td>
+            <button class="btn btn-warning m-2" (click)="editarCurso(curso)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-danger m-2" (click)="borrarCurso(curso.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+
+    
+  </div>

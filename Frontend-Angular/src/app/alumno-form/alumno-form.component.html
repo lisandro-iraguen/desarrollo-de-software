@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>{{ alumno.id ? 'Editar Alumno' : 'Nuevo Alumno' }}</h2>    
+    <form #f="ngForm" (ngSubmit)="f.form.valid && guardarAlumno()" >
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="alumno.nombre" name="nombre" required #nombre="ngModel"   [ngClass]="{ 'is-invalid': f.submitted && nombre.errors }">
+      </div>
+      <div class="form-group mb-2">
+        <label for="descripcion" class="mr-2">Fecha de Nacimiento</label>
+        <div class="input-group">
+          <input class="form-control" name="dp" [(ngModel)]="toDate" ngbDatepicker #d="ngbDatepicker" name="fechaNacimiento" required #fechaNacimiento="ngModel" [ngClass]="{ 'is-invalid': f.submitted && fechaNacimiento.errors }">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar ml-2" (click)="d.toggle()" type="button"><i class="bi bi-calendar"></i></button>
+          </div>
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>
+ 
+  <hr/>

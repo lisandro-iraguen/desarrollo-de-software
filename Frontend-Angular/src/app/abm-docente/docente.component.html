@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Lista de Docentes</h2>
+    <button class="btn btn-primary" (click)="nuevoDocente()">Nuevo Docente</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>legajo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let docente of docentes | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <td  class="align-middle">{{ docente.id }}</td>
+          <td  class="align-middle">{{ docente.nombre }}</td>
+          <td  class="align-middle">{{ docente.legajo }}</td>
+          <td>
+            <button class="btn btn-warning m-2" (click)="editarDocente(docente)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-danger m-2" (click)="borrarDocente(docente.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+    
+  </div>

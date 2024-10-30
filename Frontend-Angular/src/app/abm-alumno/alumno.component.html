@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Lista de Alumnos</h2>
+    <button class="btn btn-primary" (click)="nuevoAlumno()">Nuevo Alumno</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha de Nacimento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnos | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <td  class="align-middle">{{ alumno.id }}</td>
+          <td  class="align-middle">{{ alumno.nombre }}</td>
+          <td  class="align-middle">{{ alumno.fechaNacimiento | date:'shortDate' }}</td>
+          <td>
+            <button class="btn btn-warning m-2" (click)="editarAlumno(alumno)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-danger m-2" (click)="borrarAlumno(alumno.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+
+    
+  </div>

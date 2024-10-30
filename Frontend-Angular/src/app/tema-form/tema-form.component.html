@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>{{ tema.id ? 'Editar Tema' : 'Nuevo Tema' }}</h2>    
+    <form #f="ngForm" (ngSubmit)="f.form.valid && guardarTema()" >
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="tema.nombre" name="nombre" required #nombre="ngModel"   [ngClass]="{ 'is-invalid': f.submitted && nombre.errors }">
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" [(ngModel)]="tema.descripcion" name="descripcion" required   #descripcion="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && descripcion.errors }">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>

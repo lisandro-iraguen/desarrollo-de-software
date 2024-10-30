@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>{{ curso.id ? 'Editar Curso' : 'Nuevo Curso' }}</h2>    
+    <form #f="ngForm" (ngSubmit)="f.form.valid && guardarCurso()" >
+      <div class="form-group">
+        <label for="nombre">Tema</label>
+        <select  type="text" class="form-control" id="id" name="tema" [(ngModel)]="curso.tema.id" required #tema="ngModel"   [ngClass]="{ 'is-invalid': f.submitted && tema.errors }">
+        <option *ngFor="let t of temas" [value]="t.id">{{ t.nombre }}</option>
+        </select>
+      </div>
+    <div class="form-group">
+        <label for="nombre">Docente</label>
+        <select  type="text" class="form-control" id="id" [(ngModel)]="curso.docente.id" name="docente" required #docente="ngModel"   [ngClass]="{ 'is-invalid': f.submitted && docente.errors }">
+        <option *ngFor="let d of docentes" [value]="d.id">{{ d.nombre }}</option>
+        </select>
+      </div> 
+      <div class="form-group">
+        <label for="alumnos">Alumnos</label>
+        <div class="row">       
+            <select class="form-select" id="alumnosSelect" multiple [(ngModel)]="selectedAlumnos" name="alumnosSelect">
+                <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.nombre }}</option>
+              </select>
+      </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="descripcion" class="mr-2">Fecha de Inicio</label>
+      <div class="input-group">
+        <input class="form-control" name="dp2" [(ngModel)]="inicioFormattedDate" ngbDatepicker #d="ngbDatepicker" name="fechainicio" required #fechainicio="ngModel" [ngClass]="{ 'is-invalid': f.submitted && fechainicio.errors }">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar ml-2" (click)="d.toggle()" type="button"><i class="bi bi-calendar"></i></button>
+        </div>
+      </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="descripcion" class="mr-2">Fecha Fin</label>
+      <div class="input-group">
+        <input class="form-control" name="dp" [(ngModel)]="finFormattedDate" ngbDatepicker #d2="ngbDatepicker" name="fechafin" required #fechafin="ngModel" [ngClass]="{ 'is-invalid': f.submitted && fechafin.errors }">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar ml-2" (click)="d2.toggle()" type="button"><i class="bi bi-calendar"></i></button>
+        </div>
+      </div>
+      </div>   
+      <div class="form-group">
+        <label for="descripcion">Precio</label>
+        <input class="form-control" id="precio" [(ngModel)]="curso.precio" name="precio" required #precio="ngModel" [ngClass]="{ 'is-invalid': f.submitted && precio.errors }" [placeholder]="getFormattedPrice()"  >
+      </div> 
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>

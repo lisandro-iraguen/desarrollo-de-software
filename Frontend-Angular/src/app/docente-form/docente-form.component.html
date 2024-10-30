@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>{{ docente.id ? 'Editar Docente' : 'Nuevo Docente' }}</h2>    
+    <form #f="ngForm" (ngSubmit)="f.form.valid && guardarDocente()" >
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="docente.nombre" name="nombre" required #nombre="ngModel"   [ngClass]="{ 'is-invalid': f.submitted && nombre.errors }">
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Legajo</label>
+        <input type="text" class="form-control" id="descripcion" [(ngModel)]="docente.legajo" name="legajo" required pattern="\d*"  #legajo="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && legajo.errors }">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>
