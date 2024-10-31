@@ -50,7 +50,7 @@ export class DocenteFormComponent {
 
 
   guardarDocente() {
-    this.docenteService.updateAlumno(this.docente).subscribe(
+    this.docenteService.updateDocente(this.docente).subscribe(
       response => {
         this.router.navigate(['/docentes']); // Navigate after successful creation
         console.log('Docente actualizado:', response);

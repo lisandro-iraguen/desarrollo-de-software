@@ -1,0 +1,23 @@
+<style>
+  .curso-lista {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .curso-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+  .alumno-lista {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+
+  .alumno-item {
+    margin: 5px 0;
+  }
+</style>

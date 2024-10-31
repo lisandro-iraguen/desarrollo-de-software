@@ -7,10 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { DocentesService } from '../services/docentes.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DocenteFiltroComponent } from "../docente-filtro/docente-filtro.component";
+
 @Component({
   selector: 'app-docente',
   standalone: true,
-  imports: [CommonModule,HttpClientModule,NgxPaginationModule],
+  imports: [CommonModule, HttpClientModule, NgxPaginationModule, DocenteFiltroComponent],
   templateUrl: './docente.component.html',
   styleUrl: './docente.component.css',
   providers: [DocentesService]

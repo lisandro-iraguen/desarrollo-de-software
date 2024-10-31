@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment'
 import { Docente } from '../models/docente.model';
+import { Curso } from '../models/curso.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 @Injectable({
@@ -38,8 +39,18 @@ export class DocentesService {
       })
     );
   }
+  public getCursosByDocenteId(id: number): Observable<Array<Curso>> {
+    return this.http.get<Array<Curso>>(`${this.apiUrl}${this.recurso}/${id}/mis-cursos/`).pipe(
+      catchError(error => {
+        console.error('Error al cargar el dicebte:', error);
+        return throwError(error);
+      })
+    );
+  }
 
-  public updateAlumno(docente: Docente): Observable<Docente> {
+
+
+  public updateDocente(docente: Docente): Observable<Docente> {
     if (docente.id === 0) {
       return this.http.post<Docente>(`${this.apiUrl}${this.recurso}`, docente).pipe(
         tap(response => {

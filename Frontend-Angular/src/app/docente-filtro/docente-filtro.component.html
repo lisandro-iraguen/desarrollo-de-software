@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label for="docenteDropdown" class="p-2">Cursos Asignados a docente:</label>
+    <select class="form-control" id="docenteDropdown" (change)="onDocenteChange($event)">
+      <option *ngFor="let docente of docentes" [value]="docente.id">{{ docente.nombre }}</option>
+    </select>
+  </div>
+  <div *ngIf="cursos.length > 0" class="p-2">
+    <h6>Cursos del docente seleccionado:</h6>
+    <ul class="curso-lista">
+      <li *ngFor="let curso of cursos" class="curso-item">
+        <strong>{{curso.tema.id}} | {{curso.tema.nombre}}</strong>
+        <ul class="alumno-lista">
+          <li *ngFor="let alumno of curso.alumnos" class="alumno-item">{{alumno.nombre}}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
