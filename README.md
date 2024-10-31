@@ -41,3 +41,4 @@ npm install  # instala las dependencias si es la primera vez
 npm start    # inicia la aplicación en modo de desarrollo
 ```
 
+![image](https://github.com/user-attachments/assets/07477245-a2c2-427b-8b13-d7d9b575b687)
